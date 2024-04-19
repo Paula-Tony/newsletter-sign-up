@@ -1,0 +1,220 @@
+$Tomato: hsl(4, 100%, 67%);
+$Dark-Slate-Grey: hsl(234, 29%, 20%);
+$Charcoal-Grey: hsl(235, 18%, 26%);
+$Grey: hsl(231, 7%, 60%);
+
+@mixin breakpoints($point) {
+  @if $point ==small {
+    @media (min-width: 768px) {
+      @content;
+    }
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  background: $Dark-Slate-Grey;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}
+
+.card {
+  background: white;
+  width: 100%;
+  height: 100%;
+
+  @include breakpoints(small) {
+    display: flex;
+    width: min(100% - 4rem, 50rem);
+    height: auto;
+    margin-inline: auto;
+    padding: 1.5rem;
+    border-radius: 2rem;
+  }
+
+  &__img {
+    max-height: 340px;
+    overflow: hidden;
+    border-radius: 0 0 2rem 2rem;
+
+    @include breakpoints(small) {
+      max-height: none;
+      overflow: visible;
+      border-radius: 0;
+      flex-basis: 50%;
+      order: 1;
+    }
+
+    img,
+    picture {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__content {
+    padding: 1.5rem;
+
+    @include breakpoints(small) {
+      flex-basis: 50%;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      color: $Dark-Slate-Grey;
+    }
+
+    >p {
+      font-size: 1.25rem;
+      color: $Dark-Slate-Grey;
+      margin-bottom: 2rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 3rem;
+
+      li {
+        display: flex;
+        align-items: start;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+
+        p {
+          font-size: 1.25rem;
+          margin: 0;
+          color: $Dark-Slate-Grey;
+        }
+      }
+    }
+
+    form {
+      >div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+
+        label {
+          font-size: 1rem;
+          font-weight: 700;
+          color: $Dark-Slate-Grey;
+        }
+
+        span {
+          color: $Tomato;
+          font-size: 1rem;
+          font-weight: 700;
+          opacity: 0;
+
+          &.warning {
+            opacity: 1;
+          }
+        }
+      }
+
+      input {
+        width: 100%;
+        padding: 1.25rem;
+        border-radius: 0.5rem;
+        font-size: 1.25rem;
+        border: 2px solid rgba($Grey, 0.25);
+        margin-bottom: 1.25rem;
+
+        &::placeholder {
+          font-size: 1.25rem;
+          transition: 0.3s ease;
+        }
+
+        &:focus::placeholder {
+          opacity: 0;
+        }
+
+        &:focus {
+          outline: none;
+        }
+
+        &.warning {
+          background: rgba($Tomato, 0.25);
+          color: $Tomato;
+          border-color: $Tomato;
+
+          &::placeholder {
+            color: $Tomato;
+          }
+        }
+      }
+
+      button {
+        width: 100%;
+        background: $Dark-Slate-Grey;
+        color: white;
+        border: none;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.thanks-msg {
+  display: none;
+  @include breakpoints(small) {
+    width: min(100% - 4rem, 25rem);
+    padding: 1.5rem;
+    border-radius: 2rem;
+    min-height: auto;
+  }
+  flex-direction: column;
+  align-items: flex-start;
+  background: white;
+  min-height: 100vh;
+  padding: 1.5rem;
+
+  img {
+    display: block;
+    margin-top: auto;
+  }
+
+  h2 {
+    margin: 1.5rem 0 1.5rem;
+    font-size: 2.5rem;
+    color: $Dark-Slate-Grey;
+  }
+
+  p {
+    font-size: 1.25rem;
+    color: $Dark-Slate-Grey;
+    margin: 0;
+    line-height: 1.5;
+    @include breakpoints(small) {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  button {
+    width: 100%;
+    background: $Dark-Slate-Grey;
+    color: white;
+    border: none;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: auto;
+    cursor: pointer;
+  }
+}
